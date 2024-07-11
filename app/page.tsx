@@ -36,7 +36,7 @@ export default function Home() {
 
         <p className="text-lg font-bold">Partes de las tarjetas de tiempos</p>
         <p className="text-sm font-light">
-          Indicaciones para poder leer los diferentes partes de las tarjetas de
+          Indicaciones para poder leer las diferentes partes de las tarjetas de
           tiempos registrados por los competidores.
         </p>
         <Image width={800} alt="Tuto 2" src="/imgs/Tutorial_page-0002.jpg" />
