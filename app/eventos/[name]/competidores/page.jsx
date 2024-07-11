@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import TripulacionCard from "@/components/Tripulaciones/TripulacionCard";
 
-function page() {
+function Page() {
   const [evento, setEvento] = useState(null);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

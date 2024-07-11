@@ -1,5 +1,4 @@
 "use client";
-import { title, subtitle } from "@/components/primitives";
 import { Button, ButtonGroup, Select, SelectItem } from "@nextui-org/react";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
@@ -9,7 +8,7 @@ import { GET_EVENTO_TIEMPOS } from "@/graphql/evento/evento";
 import TiempoTabla from "@/components/Tiempos/TiempoTabla";
 import TablaAcumulada from "@/components/Tiempos/TablaAcumulada";
 
-function page() {
+function Page() {
   const [evento, setEvento] = useState(null);
 
   const [selectedEspecialId, setSelectedEspecialId] = useState(null);
@@ -232,4 +231,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

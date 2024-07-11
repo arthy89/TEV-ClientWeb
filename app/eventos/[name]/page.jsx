@@ -1,11 +1,11 @@
 "use client";
 import { IoCarSport, IoTimeSharp } from "react-icons/io5";
 import { Image, Button, Chip } from "@nextui-org/react";
-import { title, subtitle } from "@/components/primitives";
+import { title } from "@/components/primitives";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-function page() {
+function Page() {
   const router = useRouter();
   const pathname = usePathname();
   const [evento, setEvento] = useState(null);
@@ -103,4 +103,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

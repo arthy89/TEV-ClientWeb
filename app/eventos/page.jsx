@@ -5,7 +5,7 @@ import { title, subtitle } from "@/components/primitives";
 import { GET_EVENTOS_C } from "@/graphql/evento/evento";
 import EventoList from "@/components/Eventos/EventoList";
 
-function page() {
+function Page() {
   const { loading, error, data } = useQuery(GET_EVENTOS_C);
 
   if (loading) return <p className="text-center">Cargando...</p>;
@@ -25,4 +25,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
