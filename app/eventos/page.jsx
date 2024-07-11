@@ -15,7 +15,7 @@ function page() {
   return (
     <section>
       <div className="flex justify-center mb-5">
-        <h1 className={title({ color: "yellow" })}>Tiempos en Vivo</h1>
+        <h1 className={title({ color: "blue" })}>Tiempos en Vivo</h1>
       </div>
 
       <h1 className="text-xl font-bold py-2">Lista de Rally</h1>

@@ -1,0 +1,29 @@
+"use client";
+import { useState, useEffect } from "react";
+import TripulacionCard from "@/components/Tripulaciones/TripulacionCard";
+
+function page() {
+  const [evento, setEvento] = useState(null);
+
+  useEffect(() => {
+    if (!evento) {
+      setEvento(JSON.parse(localStorage.getItem("evento")));
+    }
+  }, [evento]);
+
+  return (
+    <section>
+      <h1 className="text-2xl font-bold text-center mb-2">Competidores</h1>
+
+      <div>
+        {evento?.tripulaciones.map((tripulacion, index) => (
+          <div key={tripulacion._id} className="py-1">
+            <TripulacionCard tripulacion={tripulacion} posicion={index + 1} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default page;

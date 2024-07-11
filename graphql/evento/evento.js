@@ -24,6 +24,35 @@ export const GET_EVENTOS_C = gql`
         nombre
         region
       }
+      categorias {
+        _id
+        nombre
+      }
+      etapas {
+        _id
+        nombre
+        especiales {
+          _id
+          nombre
+        }
+      }
+      tripulaciones {
+        _id
+        piloto {
+          _id
+          nombre
+          apellidos
+        }
+        navegante {
+          _id
+          nombre
+          apellidos
+        }
+        autoMarca
+        autoModelo
+        autoNum
+        categoria
+      }
       lugar
       fecha
       hora

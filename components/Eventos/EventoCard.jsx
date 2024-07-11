@@ -6,10 +6,13 @@ import {
   Image,
   CardFooter,
   Button,
+  Link,
 } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 function EventoCard({ evento }) {
-  //   console.log(evento);
+  // console.log(evento);
+  const router = useRouter();
 
   const formatDate = (dateString) => {
     const fecha = new Date(Number(dateString));
@@ -31,8 +34,14 @@ function EventoCard({ evento }) {
     return formattedTime.split(",")[0]; //return solo la HORA
   };
 
+  const handleClick = () => {
+    localStorage.setItem("evento", JSON.stringify(evento));
+    const encodedName = evento.nombre.replace(/ /g, "-");
+    router.push(`/eventos/${encodedName}`);
+  };
+
   return (
-    <Card className="py-4" isPressable>
+    <Card className="py-4" isPressable onClick={handleClick}>
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <p className="text-tiny uppercase font-bold">
           {formatDate(evento.fecha)}
