@@ -1,55 +1,45 @@
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
+import { Image } from "@nextui-org/image";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>Make&nbsp;</h1>
-        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-        <br />
-        <h1 className={title()}>
-          websites regardless of your design experience.
-        </h1>
-        <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </h2>
+        <h1 className={title()}>Bienvenido a la aplicación de&nbsp;</h1>
+        <h1 className={title({ color: "blue" })}>Tiempos en Vivo&nbsp;</h1>
       </div>
 
       <div className="flex gap-3">
         <Link
-          isExternal
           className={buttonStyles({
             color: "primary",
             radius: "full",
             variant: "shadow",
           })}
-          href={siteConfig.links.docs}
+          href={"/eventos"}
         >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
+          Ver Competencias
         </Link>
       </div>
 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
+      <div className="items-center justify-center">
+        <h1 className={title({ color: "violet" })}>Tutorial</h1>
+        <p className="text-lg font-bold">
+          Indicaciones para seleccionar y ver los tiempos
+        </p>
+
+        <Image width={800} alt="Tuto 1" src="/imgs/Tutorial_page-0001.jpg" />
+
+        <p className="text-lg font-bold">Partes de las tarjetas de tiempos</p>
+        <p className="text-sm font-light">
+          Indicaciones para poder leer los diferentes partes de las tarjetas de
+          tiempos registrados por los competidores.
+        </p>
+        <Image width={800} alt="Tuto 2" src="/imgs/Tutorial_page-0002.jpg" />
       </div>
     </section>
   );
