@@ -7,6 +7,7 @@ import { GET_TRIPULACION } from "@/graphql/evento/tripulacion";
 import { GET_EVENTO_TIEMPOS } from "@/graphql/evento/evento";
 import TiempoTabla from "@/components/Tiempos/TiempoTabla";
 import TablaAcumulada from "@/components/Tiempos/TablaAcumulada";
+import Pdf from "@/components/Pdf/Pdf";
 
 function Page() {
   const [evento, setEvento] = useState(null);
@@ -17,6 +18,8 @@ function Page() {
   const [socket, setSocket] = useState(null);
   const [showTotal, setShowTotal] = useState(false);
   const [selectedCategoria, setSelectedCategoria] = useState("");
+  const [times, setTimes] = useState([]);
+  const [dataForPdf, setDataForPdf] = useState(null);
 
   const [getTripulacion, { data: tripulacionData }] =
     useLazyQuery(GET_TRIPULACION);
@@ -46,50 +49,43 @@ function Page() {
   }, [evento]);
 
   //TODO | CONEXION AL SOCKET
-  useEffect(() => {
-    const newSocket = io("https://tev-server.vercel.app/");
-    // const newSocket = io("http://192.168.1.48:4000");
-    setSocket(newSocket);
+  // useEffect(() => {
+  //   const newSocket = io("https://tev-server.vercel.app/");
+  //   // const newSocket = io("http://192.168.1.48:4000");
+  //   setSocket(newSocket);
 
-    newSocket.on("connect", () => {
-      console.log("Connected to socket server");
-    });
+  //   newSocket.on("connect", () => {
+  //     console.log("Connected to socket server");
+  //   });
 
-    newSocket.on("nuevoTiempo", (newTiempo) => {
-      console.log("Received new tiempo", newTiempo);
-      // FETCH DATA tripulacion
-      getTripulacion({ variables: { id: newTiempo.tripulacion } });
-      setEspeciales((prevEspeciales) => {
-        const updatedEspeciales = prevEspeciales.map((especial) => {
-          if (especial._id === newTiempo.especialId) {
-            const updatedTiempos = especial.tiempos
-              ? [...especial.tiempos, newTiempo]
-              : [newTiempo];
-            return {
-              ...especial,
-              tiempos: updatedTiempos,
-            };
-          }
-          return especial;
-        });
+  //   newSocket.on("nuevoTiempo", (newTiempo) => {
+  //     console.log("Received new tiempo", newTiempo);
+  //     // FETCH DATA tripulacion
+  //     getTripulacion({ variables: { id: newTiempo.tripulacion } });
+  //     setEspeciales((prevEspeciales) => {
+  //       const updatedEspeciales = prevEspeciales.map((especial) => {
+  //         if (especial._id === newTiempo.especialId) {
+  //           const updatedTiempos = especial.tiempos
+  //             ? [...especial.tiempos, newTiempo]
+  //             : [newTiempo];
+  //           return {
+  //             ...especial,
+  //             tiempos: updatedTiempos,
+  //           };
+  //         }
+  //         return especial;
+  //       });
 
-        // if (selectedEspecial && selectedEspecial._id === newTiempo.especialId) {
-        //   setSelectedEspecial((prevSelectedEspecial) => ({
-        //     ...prevSelectedEspecial,
-        //     tiempos: [...(prevSelectedEspecial.tiempos || []), newTiempo],
-        //   }));
-        // }
+  //       return updatedEspeciales;
+  //     });
+  //   });
 
-        return updatedEspeciales;
-      });
-    });
+  //   newSocket.on("disconnect", () => {
+  //     console.log("Disconnected from socket server");
+  //   });
 
-    newSocket.on("disconnect", () => {
-      console.log("Disconnected from socket server");
-    });
-
-    return () => newSocket.close();
-  }, [getTripulacion]);
+  //   return () => newSocket.close();
+  // }, [getTripulacion]);
 
   //   TODO |
   useEffect(() => {
@@ -109,21 +105,6 @@ function Page() {
             }),
           };
         });
-
-        // if (selectedEspecial) {
-        //   setSelectedEspecial((prevSelectedEspecial) => ({
-        //     ...prevSelectedEspecial,
-        //     tiempos: prevSelectedEspecial.tiempos.map((tiempo) => {
-        //       if (tiempo.tripulacion === tripulacionData.tripulacion._id) {
-        //         return {
-        //           ...tiempo,
-        //           tripulacion: tripulacionData.tripulacion,
-        //         };
-        //       }
-        //       return tiempo;
-        //     }),
-        //   }));
-        // }
 
         return updatedEspeciales;
       });
@@ -151,6 +132,16 @@ function Page() {
   };
 
   const categorias = data?.evento?.categorias || [];
+
+  const pressPdf = () => {
+    const data = {
+      especial: selectedEspecial,
+      tiempos: times,
+    };
+
+    // console.log(data);
+    setDataForPdf(data);
+  };
 
   //   console.log(data);
 
@@ -196,7 +187,7 @@ function Page() {
       </div>
 
       {/* Select Categorias */}
-      <div className="py-2">
+      <div className="flex items-center py-2 gap-4">
         <Select
           label="Categoría"
           size="sm"
@@ -208,6 +199,14 @@ function Page() {
             <SelectItem key={categoria.nombre}>{categoria.nombre}</SelectItem>
           ))}
         </Select>
+
+        <Button
+          color="primary"
+          className="font-bold"
+          onPress={() => pressPdf()}
+        >
+          PDF
+        </Button>
       </div>
 
       {showTotal ? (
@@ -215,6 +214,7 @@ function Page() {
           <TablaAcumulada
             especiales={especiales}
             categoria={selectedCategoria}
+            setTimes={setTimes}
           />
         </div>
       ) : (
@@ -223,10 +223,14 @@ function Page() {
             <TiempoTabla
               especial={selectedEspecial}
               categoria={selectedCategoria}
+              setTimes={setTimes}
             />
           </div>
         )
       )}
+
+      {/* PDF */}
+      {dataForPdf && <Pdf dataForPdf={dataForPdf} />}
     </section>
   );
 }

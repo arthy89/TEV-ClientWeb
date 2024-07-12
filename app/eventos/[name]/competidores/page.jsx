@@ -15,7 +15,7 @@ function Page() {
     <section>
       <h1 className="text-2xl font-bold text-center mb-2">Competidores</h1>
 
-      <div>
+      <div className="sm:grid sm:grid-cols-3 gap-4">
         {evento?.tripulaciones.map((tripulacion, index) => (
           <div key={tripulacion._id} className="py-1">
             <TripulacionCard tripulacion={tripulacion} posicion={index + 1} />

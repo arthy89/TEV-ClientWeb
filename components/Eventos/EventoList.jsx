@@ -3,7 +3,7 @@ import EventoCard from "./EventoCard";
 
 function EventoList({ eventos }) {
   return (
-    <div className="grid grid-cols-2 gap-4 ">
+    <div className="grid min-[320px]:max-md:grid-cols-2 md:grid-flow-col md:auto-cols-max gap-4">
       {eventos
         .slice()
         .reverse()
