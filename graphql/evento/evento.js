@@ -48,8 +48,7 @@ export const GET_EVENTOS_C = gql`
           nombre
           apellidos
         }
-        autoMarca
-        autoModelo
+        auto
         autoNum
         categoria
       }
@@ -93,8 +92,7 @@ export const GET_EVENTO_TIEMPOS = gql`
                 nombre
                 apellidos
               }
-              autoMarca
-              autoModelo
+              auto
               autoNum
               categoria
             }

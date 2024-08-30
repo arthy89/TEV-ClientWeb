@@ -120,10 +120,7 @@ function TiempoLineCard({
 
           <div>
             <p className="text-xs font-medium">
-              {tiempo.tripulacion.autoMarca}
-            </p>
-            <p className="text-xs font-medium">
-              {tiempo.tripulacion.autoModelo}
+              {tiempo.tripulacion.auto}
             </p>
           </div>
         </div>

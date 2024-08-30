@@ -46,7 +46,7 @@ function TripulacionCard({ tripulacion, posicion }) {
         <div className="flex flex-row justify-between -my-2 w-full">
           <p className="font-light">
             <span className="font-bold">{tripulacion.autoNum}</span> -{" "}
-            {tripulacion.autoMarca} {tripulacion.autoModelo}
+            {tripulacion.auto}
           </p>
 
           <span className="flex items-center">

@@ -24,8 +24,7 @@ export const GET_TRIPS_EVENTO = gql`
       }
       categoria
       autoNum
-      autoMarca
-      autoModelo
+      auto
       categoria
       equipoNombre
     }
@@ -46,8 +45,7 @@ export const GET_TRIPULACION = gql`
         nombre
         apellidos
       }
-      autoMarca
-      autoModelo
+      auto
       autoNum
       categoria
     }
@@ -60,8 +58,7 @@ export const NEW_TRIPULACION = gql`
     $navegante: ID!
     $eventoId: ID!
     $categoria: String!
-    $autoMarca: String!
-    $autoModelo: String!
+    $auto: String!
     $autoNum: String!
     $equipoNombre: String
   ) {
@@ -70,8 +67,7 @@ export const NEW_TRIPULACION = gql`
       navegante: $navegante
       eventoId: $eventoId
       categoria: $categoria
-      autoMarca: $autoMarca
-      autoModelo: $autoModelo
+      auto: $auto
       autoNum: $autoNum
       equipoNombre: $equipoNombre
     ) {
@@ -86,8 +82,7 @@ export const NEW_TRIPULACION = gql`
         _id
       }
       categoria
-      autoMarca
-      autoModelo
+      auto
       autoNum
       equipoNombre
     }

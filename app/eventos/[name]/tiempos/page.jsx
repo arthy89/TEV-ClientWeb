@@ -1,12 +1,14 @@
 "use client";
-import { Button, ButtonGroup, Select, SelectItem } from "@nextui-org/react";
+import { Button, ButtonGroup, Select, SelectItem, Tabs, Tab } from "@nextui-org/react";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { GET_TRIPULACION } from "@/graphql/evento/tripulacion";
 import { GET_EVENTO_TIEMPOS } from "@/graphql/evento/evento";
 import TiempoTabla from "@/components/Tiempos/TiempoTabla";
+import TableTiempo from "@/components/Tiempos/TableTiempo";
 import TablaAcumulada from "@/components/Tiempos/TablaAcumulada";
+import TableAcum from "@/components/Tiempos/TableAcum"
 import Pdf from "@/components/Pdf/Pdf";
 
 function Page() {
@@ -173,7 +175,7 @@ function Page() {
             </div>
           ))}
 
-          <div className="flex items-end">
+          {/* <div className="flex items-end">
             <Button
               onPress={handleTotalPress}
               color="danger"
@@ -182,7 +184,7 @@ function Page() {
             >
               <p className="font-extrabold">TOTAL</p>
             </Button>
-          </div>
+          </div> */}
         </ul>
       </div>
 
@@ -219,12 +221,36 @@ function Page() {
         </div>
       ) : (
         selectedEspecial && (
-          <div>
-            <TiempoTabla
+          <div className="flex w-full flex-col">
+            <Tabs aria-label="Options">
+              <Tab key="epeciales" title="Especiales">
+                <TableTiempo 
+                  especial={selectedEspecial}
+                  categoria={selectedCategoria}
+                  setTimes={setTimes}
+                />
+              </Tab>
+
+              <Tab key="acumulado" title="Acumulado">
+                <TableAcum 
+                  especiales={especiales}
+                  categoria={selectedCategoria}
+                  setTimes={setTimes}
+                />
+
+                {/* <TableTiempo 
+                  especial={selectedEspecial}
+                  categoria={selectedCategoria}
+                  setTimes={setTimes}
+                /> */}
+              </Tab>
+            </Tabs>
+
+            {/* <TiempoTabla
               especial={selectedEspecial}
               categoria={selectedCategoria}
               setTimes={setTimes}
-            />
+            /> */}
           </div>
         )
       )}

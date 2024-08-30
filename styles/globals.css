@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* En el archivo CSS global */
+.sticky-column {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  left: 0;
+  z-index: 2; /* Para asegurarte de que se superpongan al contenido */
+}
+
+/* Asegúrate de ajustar el valor en .nth-of-type según tu diseño */
+.sticky-column:nth-of-type(2) {
+  left: 35px; 
+}
