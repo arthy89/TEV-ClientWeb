@@ -53,7 +53,7 @@ function EventoCard({ evento }) {
         <Image
           alt="Card background"
           className="object-cover rounded-xl"
-          src="/imgs/tinajani.jpg"
+          src="/imgs/vuelta-azangaro.jpg"
           width={270}
         />
       </CardBody>
