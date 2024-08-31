@@ -52,7 +52,7 @@ function Page() {
               radius="sm"
               alt={evento?.nombre}
               className="object-cover rounded-xl"
-              src="/imgs/tinajani.jpg"
+              src="/imgs/vuelta-azangaro.jpg"
             />
           </div>
         </div>
