@@ -61,35 +61,38 @@ function TableTiempo({ especial, categoria, admin, setTimes }) {
 
             return (
               <TableRow key={item._id}>
-                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold text-md'>{index + 1}</TableCell>
-                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B]'>
+                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold text-lg'>{index + 1}</TableCell>
+                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold'>
                   <p className='text-primary'>
                     <FaCarSide />{item.tripulacion.autoNum}
                   </p>
                 </TableCell>
                 <TableCell>
-                  <div className='flex items-center gap-2 mb-1'>
+                  <div className='text flex items-center gap-2 mb-1'>
                     <FaUserAstronaut />
                     <p>{item.tripulacion.piloto.apellidos} {item.tripulacion.piloto.nombre}</p>
                   </div>
-                  <div className='flex items-center gap-2 -mb-1'>
+                  <div className='text flex items-center gap-2 -mb-1'>
                     <FaUserAstronaut />
                     <p>{item.tripulacion.navegante.apellidos} {item.tripulacion.navegante.nombre}</p>
                   </div>
                 </TableCell>
                 <TableCell>
-                  <p>{item.tripulacion.auto}</p>
-                  <p>{item.tripulacion.categoria}</p>
+                  <div className='flex items-center gap-2 mb-1'>
+                    <FaCarSide />
+                    <p>{item.tripulacion.auto}</p>
+                    <p>{item.tripulacion.categoria}</p>
+                  </div>
                 </TableCell>
-                <TableCell>{item.penalizacion !== "0" ? mlsToFormato(item.penalizacion) : ''}</TableCell>
-                <TableCell>{mlsToFormato(item.tiempoResultado)}</TableCell>
+                <TableCell className='text-danger'>{item.penalizacion !== "0" ? mlsToFormato(item.penalizacion) : ''}</TableCell>
+                <TableCell className='font-bold'>{mlsToFormato(item.tiempoResultado)}</TableCell>
                 <TableCell>
                   {item.tiempoResultado - tiempoPrimero == 0
                     ? ''
-                    : (<p>+ { mlsToFormato(item.tiempoResultado - tiempoPrimero) }</p>)
+                    : (<p className='text-primary font-bold'>+ { mlsToFormato(item.tiempoResultado - tiempoPrimero) }</p>)
                   }
                   { tiempoAnterior ? (
-                    <p>
+                    <p className='text-secondary font-bold'>
                       + { mlsToFormato(item.tiempoResultado - tiempoAnterior) }
                     </p>
                   ) : '' }

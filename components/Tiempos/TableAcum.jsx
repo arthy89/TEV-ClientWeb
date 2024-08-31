@@ -89,8 +89,8 @@ const tripulacionTiempos = useMemo(() => {
 
             return (
               <TableRow key={item.tripulacion._id}>
-                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold text-md'>{index + 1}</TableCell>
-                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B]'>
+                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold text-lg'>{index + 1}</TableCell>
+                <TableCell className='sticky-column bg-[#FFFFFF] dark:bg-[#18181B] font-bold'>
                   <p className='text-primary'>
                     <FaCarSide />{item.tripulacion.autoNum}
                   </p>
@@ -106,23 +106,26 @@ const tripulacionTiempos = useMemo(() => {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <p>{item.tripulacion.auto}</p>
-                  <p>{item.tripulacion.categoria}</p>
+                  <div className='flex items-center gap-2 mb-1'>
+                    <p><FaCarSide /></p>
+                    <p>{item.tripulacion.auto}</p>
+                    <p>{item.tripulacion.categoria}</p>
+                  </div>
                 </TableCell>
                 <TableCell className='text-danger'>{item.penalizacionAcumulada !== 0 ? mlsToFormato(item.penalizacionAcumulada) : ''}</TableCell>
-                <TableCell>{mlsToFormato(item.tiempoAcumulado)}</TableCell>
+                <TableCell className='font-bold'>{mlsToFormato(item.tiempoAcumulado)}</TableCell>
                 <TableCell>
                   {item.tiempoAcumulado - tiempoPrimero == 0
                     ? ''
-                    : (<p>+ { mlsToFormato(item.tiempoAcumulado - tiempoPrimero) }</p>)
+                    : (<p className='text-primary font-bold'>+ { mlsToFormato(item.tiempoAcumulado - tiempoPrimero) }</p>)
                   }
                   { tiempoAnterior ? (
-                    <p>
+                    <p className='text-secondary font-bold'>
                       + { mlsToFormato(item.tiempoAcumulado - tiempoAnterior) }
                     </p>
                   ) : '' }
                 </TableCell>
-                <TableCell className='text-center text-md'>{item.numEspeciales}</TableCell>
+                <TableCell className='text-center text-md font-bold'>{item.numEspeciales}</TableCell>
               </TableRow>
             )
           }

@@ -1,5 +1,5 @@
 "use client";
-import { Button, ButtonGroup, Select, SelectItem, Tabs, Tab } from "@nextui-org/react";
+import { Button, ButtonGroup, Select, SelectItem, Tabs, Tab, Chip } from "@nextui-org/react";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
@@ -222,6 +222,12 @@ function Page() {
       ) : (
         selectedEspecial && (
           <div className="flex w-full flex-col">
+            <div className="my-2">
+              <Chip color="danger"><b>Penalización</b></Chip>
+              <Chip color="primary">Diferencia con el <b>Primero</b></Chip>
+              <Chip color="secondary">Diferencia con el <b>Anterior</b></Chip>
+            </div>
+
             <Tabs aria-label="Options">
               <Tab key="epeciales" title="Especiales">
                 <TableTiempo 
