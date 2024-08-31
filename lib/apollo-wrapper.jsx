@@ -15,9 +15,9 @@ const server_url = process.env.NEXT_PUBLIC_SERVER_URI;
 function makeClient() {
   const httpLink = new HttpLink({
     // uri: "http://192.168.1.48:4000/graphql",
-    // uri: "https://tev-server.vercel.app/graphql",
+    uri: "https://tev-server.vercel.app/graphql",
     // uri: process.env.SERVER_URI,
-    uri: server_url,
+    // uri: server_url,
   });
 
 
