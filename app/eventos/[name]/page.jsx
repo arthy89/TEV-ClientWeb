@@ -51,8 +51,8 @@ function Page() {
               isZoomed
               radius="sm"
               alt={evento?.nombre}
-              className="object-cover rounded-xl"
-              src="/imgs/vuelta-azangaro.jpg"
+              className="object-cover rounded-xl "
+              src="/imgs/motocross.jpeg"
             />
           </div>
         </div>

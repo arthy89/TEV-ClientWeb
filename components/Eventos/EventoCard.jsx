@@ -53,7 +53,7 @@ function EventoCard({ evento }) {
         <Image
           alt="Card background"
           className="object-cover rounded-xl"
-          src="/imgs/vuelta-azangaro.jpg"
+          src="/imgs/motocross.jpeg"
           width={270}
         />
       </CardBody>
